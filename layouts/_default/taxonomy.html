@@ -1,0 +1,21 @@
+{{- define "main" -}}
+
+<h1 class="mb-10">标签</h1>
+
+{{- if .Data.Terms -}}
+<div class="flex flex-wrap gap-3">
+  {{- range .Data.Terms.Alphabetical -}}
+  <a
+    class="inline-block rounded border border-black/10 px-3 py-1 text-sm no-underline opacity-70 transition hover:opacity-100 hover:border-black/25 dark:border-white/10 dark:hover:border-white/25"
+    href="{{- .Page.Permalink -}}"
+  >
+    {{- .Page.Title -}}
+    <span class="ml-1 text-xs opacity-50">{{- .Count -}}</span>
+  </a>
+  {{- end -}}
+</div>
+{{- else -}}
+<p class="opacity-50">暂无标签。</p>
+{{- end -}}
+
+{{- end -}}
