@@ -16,6 +16,19 @@ ignoreErrors = ["error-remote-getjson"]
   name = '未尝往'
   bio = '逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也。'
 
+  [params.giscus]
+    repo = 'YetNeverPassed/yetneverpassed.github.io'
+    repoId = 'R_kgDOTmOV3A'
+    category = 'Announcements'
+    categoryId = 'DIC_kwDOTmOV3M4DCK7Q'
+    mapping = 'pathname'
+    strict = '0'
+    reactionsEnabled = '1'
+    emitMetadata = '0'
+    inputPosition = 'bottom'
+    theme = 'preferred_color_scheme'
+    lang = 'zh-CN'
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
