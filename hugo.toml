@@ -1,69 +1,39 @@
 baseURL = "https://yetneverpassed.github.io/"
-languageCode = "zh-cn"
-defaultContentLanguage = "zh"
 title = "未尝往"
-theme = "PaperMod"
-paginate = 10
+languageCode = "zh-cn"
+DefaultContentLanguage = "zh"
+theme = "paper"
+enableInlineShortcodes = true
+ignoreErrors = ["error-remote-getjson"]
 
-enableRobotsTXT = true
-buildDrafts = false
-buildFuture = false
-buildExpired = false
+[pagination]
+  pagerSize = 10
 
-[minify]
-  disableXML = true
-  minifyOutput = true
+[params]
+  color = 'linen'
+  github = 'YetNeverPassed'
+  avatar = ''
+  name = '未尝往'
+  bio = ''
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
 
 [menu]
   [[menu.main]]
     identifier = "archives"
     name = "归档"
     url = "/archives/"
-    weight = 5
-  [[menu.main]]
-    identifier = "tags"
-    name = "标签"
-    url = "/tags/"
     weight = 10
-  [[menu.main]]
-    identifier = "search"
-    name = "搜索"
-    url = "/search/"
-    weight = 15
 
-[params]
-  env = "production"
-  defaultTheme = "auto"
-  ShowReadingTime = true
-  ShowShareButtons = false
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowWordCount = true
-  ShowToc = true
-  TocOpen = false
-  comments = false
-
-  [params.homeInfoParams]
-    Title = "你好"
-    Content = "这里写一句你的博客简介。"
-
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/yetneverpassed"
-
-[params.assets]
-  disableFingerprinting = true
-
-[markup]
-  [markup.highlight]
-    noClasses = false
-    codeFences = true
-    guessSyntax = true
-    lineNos = false
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 3
+[taxonomies]
+  tag = "tags"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
