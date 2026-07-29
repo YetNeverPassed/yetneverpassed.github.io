@@ -1,32 +1,10 @@
-/* ── Post tags: quiet, small, bordered ── */
-article footer a {
-  font-size: 0.72rem !important;
-  padding: 0.15rem 0.55rem !important;
-  border-radius: 3px !important;
-  border: 1px solid rgba(0, 0, 0, 0.12) !important;
-  background: transparent !important;
-  color: rgba(0, 0, 0, 0.45) !important;
-  letter-spacing: 0.02em;
-  transition: all 0.2s ease;
-  line-height: 1.6 !important;
-  margin-bottom: 0.4rem !important;
+/* ── Avatar: no spin, subtle scale on hover ── */
+.home-avatar img,
+div:has(> img[alt]) img.rounded-full {
+  transition: transform 0.4s ease !important;
 }
 
-article footer a:hover {
-  background: rgba(0, 0, 0, 0.04) !important;
-  border-color: rgba(0, 0, 0, 0.25) !important;
-  color: rgba(0, 0, 0, 0.7) !important;
-}
-
-/* Dark mode */
-.dark article footer a {
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  color: rgba(255, 255, 255, 0.4) !important;
-  background: transparent !important;
-}
-
-.dark article footer a:hover {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
-  color: rgba(255, 255, 255, 0.7) !important;
+div:has(> img[alt]) img.rounded-full:hover {
+  animation: none !important;
+  transform: scale(1.04);
 }

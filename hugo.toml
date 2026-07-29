@@ -12,7 +12,7 @@ ignoreErrors = ["error-remote-getjson"]
 [params]
   color = 'linen'
   github = 'YetNeverPassed'
-  avatar = ''
+  avatar = 'https://yetneverpassed.github.io/avatar.jpeg'
   name = '未尝往'
   bio = '逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也。'
 
