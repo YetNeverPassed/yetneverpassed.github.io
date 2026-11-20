@@ -385,25 +385,41 @@
         });
       }
       function updateCurrent() {
-        const readingLine = Math.min(100, window.innerHeight * 0.25);
+        const pagePadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
         let current = headings[0];
         headings.forEach((heading) => {
-          if (heading.getBoundingClientRect().top <= readingLine + 1) current = heading;
+          const margin = parseFloat(getComputedStyle(heading).scrollMarginTop) || 0;
+          if (heading.getBoundingClientRect().top <= pagePadding + margin + 2) current = heading;
         });
+        if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+          current = headings[headings.length - 1];
+        }
         markCurrent(current);
       }
+      let frame = 0;
+      function scheduleCurrent() {
+        if (frame) return;
+        frame = window.requestAnimationFrame(() => {
+          frame = 0;
+          updateCurrent();
+        });
+      }
       linksByHeading.forEach((links, heading) => {
-        links.forEach((link) => link.addEventListener('click', () => markCurrent(heading)));
+        links.forEach((link) => link.addEventListener('click', () => {
+          markCurrent(heading);
+          scheduleCurrent();
+        }));
       });
       updateCurrent();
-      if (typeof IntersectionObserver !== 'function') return;
-      const readingLine = Math.min(100, Math.round(window.innerHeight * 0.25));
-      const observer = new IntersectionObserver(updateCurrent, {
-        rootMargin: `-${readingLine}px 0px -${Math.round(window.innerHeight * 0.6)}px 0px`,
-        threshold: [0, 1]
-      });
-      headings.forEach((heading) => observer.observe(heading));
-      window.addEventListener('resize', updateCurrent, { passive: true });
+      // Scroll events also cover jumps across paragraphs with no visible heading.
+      window.addEventListener('scroll', scheduleCurrent, { passive: true });
+      window.addEventListener('resize', scheduleCurrent, { passive: true });
+      window.addEventListener('hashchange', scheduleCurrent);
+      window.addEventListener('load', scheduleCurrent);
+      if (typeof ResizeObserver === 'function') {
+        const prose = document.querySelector('.prose');
+        if (prose) new ResizeObserver(scheduleCurrent).observe(prose);
+      }
     }
     enhanceTOC();
   }

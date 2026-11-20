@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{ $toc := .TableOfContents }}{{ $hasTOC := strings.Contains $toc "<a " }}
-<section class="wrap"><div class="breadcrumb"><a href="{{ site.Home.RelPermalink }}">全部文章</a><span>/</span><span>{{ .Title }}</span></div>
+<section class="wrap reading-page{{ if not $hasTOC }} reading-page-no-toc{{ end }}"><div class="breadcrumb"><a href="{{ site.Home.RelPermalink }}">全部文章</a><span>/</span><span>{{ .Title }}</span></div>
 <div class="reading-grid{{ if not $hasTOC }} no-toc{{ end }}"><article class="reading-sheet">
-<header class="reading-head"><p class="eyebrow">NOTES &amp; REFLECTIONS</p><h1>{{ .Title }}</h1>
+<header class="reading-head"><h1>{{ .Title }}</h1>
 <div class="reading-meta">{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 1 月 2 日" }}</time>{{ end }}{{ if .WordCount }}<span>约 {{ .ReadingTime }} 分钟阅读</span>{{ end }}{{ with .Params.author | default site.Params.author }}<span>{{ . }}</span>{{ end }}{{ range .GetTerms "tags" }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div>
 </header>
 <div class="prose">{{ .Content }}</div>

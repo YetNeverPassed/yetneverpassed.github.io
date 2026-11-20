@@ -15,7 +15,7 @@ ignoreErrors = ["error-remote-getjson"]
   avatar = 'https://yetneverpassed.github.io/avatar.jpeg'
   name = '未尝往'
   bio = '逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也。'
-  description = '记录，思考，让时间留下些痕迹。'
+  description = '逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也。'
   mainSections = ['posts']
 
   [params.giscus]
