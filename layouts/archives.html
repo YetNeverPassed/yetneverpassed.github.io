@@ -1,0 +1,8 @@
+{{ define "main" }}
+<section class="wrap"><header class="page-head"><p class="eyebrow">A SMALL HISTORY OF WORDS</p><h1>文字的来路。</h1><p>按时间整理，不让写过的文字散落。</p></header>
+{{ $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+{{ range $posts.GroupByDate "2006" }}<div class="archive-layout"><div class="archive-intro"><div class="large-number">{{ .Key }}</div><div>{{ len .Pages }} 篇文字</div></div><div>
+{{ range .Pages.GroupByDate "01" }}<h2 class="year-heading">{{ (index .Pages 0).Date.Format "1 月" }}</h2>{{ range .Pages }}<div class="archive-row"><time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01 / 02" }}</time><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>{{ end }}{{ end }}
+</div></div>{{ else }}<p class="empty-state">这里暂时没有文章。</p>{{ end }}
+</section>
+{{ end }}

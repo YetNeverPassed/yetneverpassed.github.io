@@ -77,3 +77,41 @@ main {
   --color-scale-white: #faf8f1;
   --color-scale-black: #1a1912;
 }
+
+/* 纸页与松绿：沿用既有评论地址与讨论映射，只更新纸面和按钮配色。 */
+main {
+  --color-btn-text: #416955;
+  --color-btn-bg: #fffefa;
+  --color-btn-border: #cbd7c1;
+  --color-btn-hover-bg: #eaf0e5;
+  --color-btn-hover-border: #a8bba0;
+  --color-btn-active-bg: #dde7d6;
+  --color-btn-selected-bg: #dde7d6;
+  --color-btn-primary-text: #fffefa;
+  --color-btn-primary-bg: #416955;
+  --color-btn-primary-border: #416955;
+  --color-btn-primary-hover-bg: #315340;
+  --color-btn-primary-hover-border: #315340;
+  --color-btn-primary-selected-bg: #315340;
+  --color-btn-primary-disabled-text: #fffefa;
+  --color-btn-primary-disabled-bg: #7c927d;
+  --color-btn-primary-disabled-border: #7c927d;
+  --color-fg-default: #292f2b;
+  --color-fg-muted: #657165;
+  --color-fg-subtle: #657165;
+  --color-canvas-default: #fffefa;
+  --color-canvas-overlay: #f6f5f2;
+  --color-canvas-inset: #f6f5f2;
+  --color-canvas-subtle: #eaf0e5;
+  --color-border-default: #e1e5da;
+  --color-border-muted: #e1e5da;
+  --color-neutral-muted: #eaf0e5;
+  --color-accent-fg: #416955;
+  --color-accent-emphasis: #416955;
+  --color-accent-muted: #cbd7c1;
+  --color-accent-subtle: #eaf0e5;
+  --color-primer-canvas-backdrop: rgba(41, 47, 43, 0.3);
+  --color-primer-shadow-focus: 0 0 0 3px rgba(65, 105, 85, 0.2);
+  --color-scale-white: #fffefa;
+  --color-scale-black: #292f2b;
+}

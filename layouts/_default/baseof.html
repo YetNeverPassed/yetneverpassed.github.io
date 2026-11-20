@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode | default "zh-CN" }}">
+{{ partial "pine-head.html" . }}
+<body data-search-index="{{ "index.json" | relURL }}">
+<a class="skip-link" href="#main">跳到正文</a>
+{{ partial "pine-icons.html" . }}
+<div id="site">
+{{ partial "pine-header.html" . }}
+<main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
+{{ partial "pine-footer.html" . }}
+<button class="back-top" id="back-top" type="button" aria-label="回到页面顶部"><svg class="icon" aria-hidden="true"><use href="#up-icon"/></svg></button>
+</div>
+{{ partial "pine-search.html" . }}
+</body>
+</html>

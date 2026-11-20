@@ -1,0 +1,9 @@
+{{ define "main" }}
+<section class="wrap">
+<header class="page-head"><p class="eyebrow">WORDS &amp; THOUGHTS</p><h1>{{ if eq .Section "posts" }}全部文章。{{ else }}{{ .Title }}{{ end }}</h1><p>写下的文字，留在这里慢慢读。</p></header>
+{{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+{{ $pager := .Paginate .RegularPages.ByDate.Reverse }}
+<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ else }}<p class="empty-state">这里暂时没有文章。</p>{{ end }}</div>
+{{ partial "pine-pagination.html" $pager }}
+</section>
+{{ end }}

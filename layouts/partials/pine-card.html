@@ -1,0 +1,6 @@
+<article class="post-card">
+<div class="post-top"><time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 1 月 2 日" }}</time>{{ if .Draft }}<span class="badge">草稿</span>{{ end }}</div>
+<h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+{{ with .Description | default (.Summary | plainify) }}<p>{{ . | truncate 150 }}</p>{{ end }}
+<div class="post-bottom"><div class="tag-set">{{ range .GetTerms "tags" }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div><a class="read-more" href="{{ .RelPermalink }}" aria-label="继续阅读：{{ .Title }}">继续阅读<svg class="icon" aria-hidden="true"><use href="#arrow-icon"/></svg></a></div>
+</article>

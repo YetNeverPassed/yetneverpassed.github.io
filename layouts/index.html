@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="wrap">
+<div class="hero"><div><p class="eyebrow">WORDS, THOUGHTS &amp; THE EVERYDAY</p><h1>记录，思考，<br>让时间留下些痕迹。</h1><div class="hero-rule"></div><p class="bio">{{ range $i, $part := split site.Params.bio "；" }}{{ if $i }}；<br>{{ end }}{{ $part }}{{ end }}</p></div>{{ partial "pine-landscape.html" . }}</div>
+<div class="section-heading"><h2>最近的文字</h2><a class="small" href="{{ "archives/" | relURL }}">按时间浏览 →</a></div>
+{{ $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+{{ $pager := .Paginate $posts }}
+<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ else }}<p class="empty-state">文字还在酝酿，稍后再来看看。</p>{{ end }}</div>
+{{ partial "pine-pagination.html" $pager }}
+<p class="home-end">文字留在这里，时间继续向前。</p>
+</section>
+{{ end }}
