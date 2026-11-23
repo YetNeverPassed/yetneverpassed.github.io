@@ -1,7 +1,7 @@
 {{ define "main" }}
-<section class="wrap">
-<header class="page-head"><p class="eyebrow">FIND A THREAD, FOLLOW A THOUGHT</p><h1>{{ .Title }}</h1><p>循着这个话题，继续读下去。</p></header>
-<div class="tag-cloud"><a class="tag-chip" href="{{ .Parent.RelPermalink }}">全部话题</a><span class="tag-chip selected">{{ .Title }}<small>{{ len .RegularPages }}</small></span></div>
-{{ $pager := .Paginate .RegularPages.ByDate.Reverse }}<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ else }}<p class="empty-state">这个话题暂时没有文章。</p>{{ end }}</div>{{ partial "pine-pagination.html" $pager }}
+<section class="wrap tags-page">
+<header class="page-head"><h1>{{ .Title }}</h1><p>共 {{ len .RegularPages }} 篇文章。</p></header>
+<div class="tag-cloud"><a class="tag-chip" href="{{ .Parent.RelPermalink }}">全部标签</a><span class="tag-chip selected">{{ .Title }}</span></div>
+{{ $pager := .Paginate .RegularPages.ByDate.Reverse }}<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ else }}<p class="empty-state">这个标签暂时没有文章。</p>{{ end }}</div>{{ partial "pine-pagination.html" $pager }}
 </section>
 {{ end }}

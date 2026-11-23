@@ -1,4 +1,4 @@
-/* Paper and pine: progressive enhancement for ordinary Hugo pages. */
+/* Wujinzang: progressive enhancement for ordinary Hugo pages. */
 (() => {
   'use strict';
 
@@ -233,6 +233,11 @@
       });
       document.addEventListener('keydown', (event) => {
         if (event.isComposing || event.defaultPrevented) return;
+        if ((event.metaKey || event.ctrlKey) && !event.altKey && event.key.toLowerCase() === 'k') {
+          event.preventDefault();
+          openSearch();
+          return;
+        }
         if (isOpen) {
           if (event.key === 'Escape') {
             event.preventDefault();
@@ -267,6 +272,11 @@
 
     const backTop = byId('back-top');
     if (backTop) {
+      function updateBackTop() {
+        backTop.hidden = window.scrollY < 500;
+      }
+      updateBackTop();
+      window.addEventListener('scroll', updateBackTop, { passive: true });
       backTop.addEventListener('click', () => {
         const reduceMotion = typeof window.matchMedia === 'function' &&
           window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -405,7 +415,15 @@
         });
       }
       linksByHeading.forEach((links, heading) => {
-        links.forEach((link) => link.addEventListener('click', () => {
+        links.forEach((link) => link.addEventListener('click', (event) => {
+          if (!event.defaultPrevented && event.button === 0 &&
+              !event.metaKey && !event.ctrlKey && !event.altKey && !event.shiftKey &&
+              new URL(link.href, window.location.href).hash === window.location.hash) {
+            event.preventDefault();
+            const reduceMotion = typeof window.matchMedia === 'function' &&
+              window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            heading.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth' });
+          }
           markCurrent(heading);
           scheduleCurrent();
         }));

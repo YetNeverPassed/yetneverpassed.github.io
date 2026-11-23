@@ -1,9 +1,9 @@
 {{ define "main" }}
-<section class="wrap">
-<header class="page-head"><p class="eyebrow">FIND A THREAD, FOLLOW A THOUGHT</p><h1>循着一个话题。</h1><p>同一类想法，放在一起慢慢读。</p></header>
+<section class="wrap tags-page">
+<header class="page-head"><h1>标签</h1><p>沿着一个话题，找到相关的文字。</p></header>
 {{ $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
-<div class="tag-cloud" aria-label="文章话题"><a class="tag-chip" href="{{ site.Home.RelPermalink }}">全部<small>{{ len $posts }}</small></a>{{ range .Data.Terms.Alphabetical }}<a class="tag-chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}<small>{{ .Count }}</small></a>{{ end }}</div>
-{{ if not .Data.Terms }}<p class="empty-state">文章尚未设置标签。也可以按时间浏览全部文字。</p>{{ end }}
-{{ $pager := .Paginate $posts }}<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ end }}</div>{{ partial "pine-pagination.html" $pager }}
+<div class="tag-cloud" aria-label="文章标签"><a class="tag-chip" href="{{ site.Home.RelPermalink }}">全部<small>{{ len $posts }}</small></a>{{ range .Data.Terms.Alphabetical }}<a class="tag-chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}<small>{{ .Count }}</small></a>{{ end }}</div>
+{{ if not .Data.Terms }}<p class="empty-state">文章尚未设置标签，可以浏览全部文章。</p>{{ end }}
+{{ $pager := .Paginate $posts }}<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ else }}<p class="empty-state">这里暂时没有文章。</p>{{ end }}</div>{{ partial "pine-pagination.html" $pager }}
 </section>
 {{ end }}

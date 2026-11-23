@@ -1,11 +1,10 @@
 {{ define "main" }}
-<section class="wrap">
-<div class="hero"><div><p class="eyebrow">WORDS, THOUGHTS &amp; THE EVERYDAY</p><h1 class="hero-quote">{{ range $i, $part := split site.Params.bio "；" }}{{ if $i }}；<br>{{ end }}<span>{{ $part }}</span>{{ end }}</h1><div class="hero-rule" aria-hidden="true"></div></div>{{ partial "pine-landscape.html" . }}</div>
-<div class="section-heading"><h2>最近的文字</h2><a class="small" href="{{ "archives/" | relURL }}">按时间浏览 →</a></div>
+<section class="wrap home-page">
 {{ $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+<div class="list-toolbar"><nav class="text-tabs" aria-label="文章标签"><a class="text-tab" href="{{ site.Home.RelPermalink }}" aria-current="page">全部</a>{{ range site.Taxonomies.tags.Alphabetical }}<a class="text-tab" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>{{ end }}</nav></div>
 {{ $pager := .Paginate $posts }}
-<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ else }}<p class="empty-state">文字还在酝酿，稍后再来看看。</p>{{ end }}</div>
+<div class="article-list">{{ range $pager.Pages }}{{ partial "pine-card.html" . }}{{ else }}<p class="empty-state">这里暂时没有文章。</p>{{ end }}</div>
 {{ partial "pine-pagination.html" $pager }}
-<p class="home-end">文字留在这里，时间继续向前。</p>
+<p class="list-end">共 {{ len $posts }} 篇文章。</p>
 </section>
 {{ end }}

@@ -1,13 +1,11 @@
 {{ $active := "home" }}
 {{ if eq .Section "archives" }}{{ $active = "archives" }}{{ else if eq .Section "about" }}{{ $active = "about" }}{{ else if and (in (slice "taxonomy" "term") .Kind) (eq .Data.Plural "tags") }}{{ $active = "tags" }}{{ end }}
 <header class="site-header"><div class="wrap header-inner">
-<a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }}首页"><span class="mark" aria-hidden="true">往</span><span><span class="brand-name">{{ site.Title }}</span><span class="brand-small">记录 · 思考 · 生活</span></span></a>
-<div class="nav-wrap"><nav aria-label="博客导航">
+<div class="brand-group"><a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }}首页"><svg class="brand-symbol" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" aria-hidden="true"><path d="M4 6h19M4 13h19M4 20h13"/><circle class="brand-dot" cx="23" cy="20" r="2.7" fill="#9b4529" stroke="none"/></svg><span class="brand-name">{{ site.Title }}</span></a>{{ with site.Params.github }}<a class="github icon-btn" href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub 主页"><svg class="icon" aria-hidden="true"><use href="#github-icon"/></svg></a>{{ end }}</div>
+<div class="nav-wrap nav-tools"><nav class="site-nav" aria-label="博客导航">
 <a href="{{ site.Home.RelPermalink }}"{{ if eq $active "home" }} aria-current="page"{{ end }}>文章</a>
 <a href="{{ "archives/" | relURL }}"{{ if eq $active "archives" }} aria-current="page"{{ end }}>归档</a>
 <a href="{{ "tags/" | relURL }}"{{ if eq $active "tags" }} aria-current="page"{{ end }}>标签</a>
 <a href="{{ "about/" | relURL }}"{{ if eq $active "about" }} aria-current="page"{{ end }}>关于</a>
-</nav><div class="tools">
-<button class="icon-btn" id="open-search" type="button" aria-label="搜索文章" hidden><svg class="icon" aria-hidden="true"><use href="#search-icon"/></svg></button>
-{{ with site.Params.github }}<a class="github icon-btn" href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub 主页"><svg class="icon" aria-hidden="true"><use href="#github-icon"/></svg></a>{{ end }}
-</div></div></div></header>
+</nav><div class="tools"><button class="header-search" id="open-search" type="button" aria-label="搜索文章" hidden><span>搜索</span><svg class="icon" aria-hidden="true"><use href="#search-icon"/></svg></button></div></div>
+</div></header>

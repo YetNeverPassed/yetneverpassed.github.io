@@ -1,5 +1,5 @@
 baseURL = "https://yetneverpassed.github.io/"
-title = "未尝往"
+title = "无尽藏"
 languageCode = "zh-cn"
 DefaultContentLanguage = "zh"
 hasCJKLanguage = true
@@ -14,7 +14,7 @@ ignoreErrors = ["error-remote-getjson"]
   color = 'linen'
   github = 'YetNeverPassed'
   avatar = 'https://yetneverpassed.github.io/avatar.jpeg'
-  name = '未尝往'
+  name = '无尽藏'
   bio = '逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也。'
   description = '逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也。'
   mainSections = ['posts']

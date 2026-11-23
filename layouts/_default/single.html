@@ -1,17 +1,17 @@
 {{ define "main" }}
 {{ $toc := .TableOfContents }}{{ $hasTOC := strings.Contains $toc "<a " }}
-<section class="wrap reading-page{{ if not $hasTOC }} reading-page-no-toc{{ end }}"><div class="breadcrumb"><a href="{{ site.Home.RelPermalink }}">全部文章</a><span>/</span><span>{{ .Title }}</span></div>
+<section class="wrap reading-page{{ if not $hasTOC }} reading-page-no-toc{{ end }}"><div class="breadcrumb"><a href="{{ site.Home.RelPermalink }}">← 全部文章</a></div>
 <div class="reading-grid{{ if not $hasTOC }} no-toc{{ end }}"><article class="reading-sheet">
-<header class="reading-head"><h1>{{ .Title }}</h1>
-<div class="reading-meta">{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 1 月 2 日" }}</time>{{ end }}{{ if .WordCount }}{{ $wordsPerMinute := 212 }}{{ $readingHint := "按每分钟约 212 词估算" }}{{ if .Params.iscjklanguage }}{{ $wordsPerMinute = 500 }}{{ $readingHint = "按中文每分钟约 500 字估算" }}{{ end }}<span class="reading-time" title="{{ $readingHint }}">{{ if lt .WordCount $wordsPerMinute }}不到 1 分钟阅读{{ else }}约 {{ .ReadingTime }} 分钟阅读{{ end }}</span>{{ end }}{{ with .Params.author | default site.Params.author }}<span>{{ . }}</span>{{ end }}{{ range .GetTerms "tags" }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div>
+<header class="reading-head"><div class="article-category"><span>文章</span>{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 1 月 2 日" }}</time>{{ end }}</div><h1>{{ .Title }}</h1>
+<div class="reading-meta">{{ if .WordCount }}{{ $wordsPerMinute := 212 }}{{ $readingHint := "按每分钟约 212 词估算" }}{{ if .Params.iscjklanguage }}{{ $wordsPerMinute = 500 }}{{ $readingHint = "按中文每分钟约 500 字估算" }}{{ end }}<span class="reading-time" title="{{ $readingHint }}">{{ if lt .WordCount $wordsPerMinute }}不到 1 分钟阅读{{ else }}约 {{ .ReadingTime }} 分钟阅读{{ end }}</span>{{ end }}{{ with .Params.author | default site.Params.author }}<span>{{ . }}</span>{{ end }}{{ range .GetTerms "tags" }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div>
 </header>
 <div class="prose">{{ .Content }}</div>
-<div class="article-tail"><a href="{{ site.Home.RelPermalink }}">← 回到全部文章</a><span>文字与时间 · {{ site.Title }}</span></div>
+<div class="article-tail"><a href="{{ site.Home.RelPermalink }}">← 回到全部文章</a>{{ with site.Home.OutputFormats.Get "RSS" }}<a href="{{ .RelPermalink }}">RSS</a>{{ end }}</div>
 {{ $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
 {{ if and (eq .Section "posts") (not site.Params.disablePostNavigation) (gt (len $posts) 1) }}<nav class="post-navigation" aria-label="相邻文章">{{ with $posts.Prev . }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}{{ with $posts.Next . }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}</nav>{{ end }}
 {{ if and site.Params.giscus.repo (ne .Params.comments false) }}{{ partial "pine-comments.html" . }}{{ end }}
 </article>
-{{ if $hasTOC }}<aside class="toc" aria-label="文章目录"><div class="toc-inner"><p class="toc-title">这篇文章</p>{{ $toc }}<div class="toc-separator"></div><small>留一点空白，<br>给尚未写下的想法。</small></div></aside>{{ end }}
+{{ if $hasTOC }}<aside class="toc" aria-label="文章目录"><div class="toc-inner"><p class="toc-title">文章目录</p>{{ $toc }}</div></aside>{{ end }}
 </div></section>
 {{ if .Params.mermaid }}{{ partial "mermaid.html" . }}{{ end }}
 {{ end }}
