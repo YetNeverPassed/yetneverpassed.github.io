@@ -29,7 +29,7 @@ ignoreErrors = ["error-remote-getjson"]
     reactionsEnabled = '1'
     emitMetadata = '0'
     inputPosition = 'bottom'
-    theme = 'https://yetneverpassed.github.io/giscus-linen.css'
+    theme = 'wujinzang'
     lang = 'zh-CN'
 
 [markup]

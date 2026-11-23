@@ -272,11 +272,19 @@
 
     const backTop = byId('back-top');
     if (backTop) {
+      const comments = document.querySelector('.comments');
       function updateBackTop() {
-        backTop.hidden = window.scrollY < 500;
+        const bounds = comments && window.innerWidth <= 620 ? comments.getBoundingClientRect() : null;
+        const readingComments = bounds && bounds.top < window.innerHeight && bounds.bottom > 0;
+        backTop.hidden = window.scrollY < 500 || Boolean(readingComments);
       }
       updateBackTop();
       window.addEventListener('scroll', updateBackTop, { passive: true });
+      window.addEventListener('resize', updateBackTop);
+      if (comments && typeof ResizeObserver === 'function') {
+        const commentsObserver = new ResizeObserver(updateBackTop);
+        commentsObserver.observe(comments);
+      }
       backTop.addEventListener('click', () => {
         const reduceMotion = typeof window.matchMedia === 'function' &&
           window.matchMedia('(prefers-reduced-motion: reduce)').matches;

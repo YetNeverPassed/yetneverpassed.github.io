@@ -1,3 +1,8 @@
+{{ $commentTheme := site.Params.giscus.theme | default "light" }}
+{{ if eq $commentTheme "wujinzang" }}
+{{ $commentStyle := resources.FromString "giscus-wujinzang.css" (readFile "static/giscus-linen.css") | minify | fingerprint }}
+{{ $commentTheme = $commentStyle.Permalink }}
+{{ end }}
 <section class="comments" aria-label="文章评论"><h2>留一点回声</h2><div class="giscus"></div>
 <script src="https://giscus.app/client.js"
 data-repo="{{ site.Params.giscus.repo }}"
@@ -9,7 +14,7 @@ data-strict="{{ site.Params.giscus.strict | default "1" }}"
 data-reactions-enabled="{{ site.Params.giscus.reactionsEnabled | default "0" }}"
 data-emit-metadata="{{ site.Params.giscus.emitMetadata | default "0" }}"
 data-input-position="{{ site.Params.giscus.inputPosition | default "top" }}"
-data-theme="{{ site.Params.giscus.theme | default "light" }}"
+data-theme="{{ $commentTheme }}"
 data-lang="{{ site.Params.giscus.lang | default "zh-CN" }}"
 data-loading="{{ site.Params.giscus.loading | default "lazy" }}"
 crossorigin="anonymous" async></script>
