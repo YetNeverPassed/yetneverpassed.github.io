@@ -2,6 +2,7 @@ baseURL = "https://yetneverpassed.github.io/"
 title = "未尝往"
 languageCode = "zh-cn"
 DefaultContentLanguage = "zh"
+hasCJKLanguage = true
 theme = "paper"
 enableInlineShortcodes = true
 ignoreErrors = ["error-remote-getjson"]

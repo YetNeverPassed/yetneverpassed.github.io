@@ -175,7 +175,8 @@ a.tag:hover { background: #dce7d5; text-decoration: underline; text-underline-of
 .reading-page .reading-head { padding: 42px 44px 28px; }
 .reading-page .reading-head h1 { margin: 0 0 17px; font-size: 36px; }
 .prose { min-width: 0; padding: 28px 44px 42px; font: 16px/2 var(--serif); overflow-wrap: anywhere; }
-.reading-page .prose { padding-top: 34px; padding-bottom: 44px; }
+.reading-page .prose { padding-top: 34px; padding-bottom: 44px; font-size: 18px; }
+.reading-page .prose blockquote p { font-size: 18px; }
 .prose p { margin: 0 0 22px; }
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 { font-family: var(--serif); font-weight: 400; color: var(--green-dark); scroll-margin-top: 30px; }
 .prose h1 { font-size: 30px; line-height: 1.65; margin: 42px 0 20px; }
